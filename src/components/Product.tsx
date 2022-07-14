@@ -67,31 +67,36 @@ const Product: React.FC = () => (
   <ProductWrapper>
     <ProducstImageBox>
       <ProductImage src={mockProduct.imageUrl} alt={mockProduct.goodsName} />
-      <ProductLabel>
-        <Typography variant="body3">단독</Typography>
-      </ProductLabel>
+      {mockProduct.isExclusive && (
+        <ProductLabel>
+          <Typography variant="body3">단독</Typography>
+        </ProductLabel>
+      )}
     </ProducstImageBox>
     <ProductDescription>
       <Typography variant="h6">{mockProduct.brandName}</Typography>
       <ProductNameBox>
-        <Typography variant="h5">
-          상품명상품명상품명상품명상품명상품명상품명
-          상품명상품명상품명상품명상품명상품명상품명상품명상품명상품명상품명상품명상품명상품명
-        </Typography>
+        <Typography variant="h5">{mockProduct.goodsName}</Typography>
       </ProductNameBox>
       <ProductPriceBox>
-        <Typography variant="body1">99999원</Typography>
-        <Typography variant="body1" color={colors.red}>
-          34%
+        <Typography variant="body1">
+          {`${mockProduct.price.toLocaleString()}원`}
         </Typography>
+        {mockProduct.isSale && (
+          <Typography variant="body1" color={colors.red}>
+            {`${mockProduct.saleRate}%`}
+          </Typography>
+        )}
       </ProductPriceBox>
-      <Typography
-        variant="body4"
-        textDecoration="line-through"
-        color={colors.grey6}
-      >
-        9999원
-      </Typography>
+      {mockProduct.isSale && (
+        <Typography
+          variant="body4"
+          textDecoration="line-through"
+          color={colors.grey6}
+        >
+          {`${mockProduct.normalPrice.toLocaleString()}원`}
+        </Typography>
+      )}
     </ProductDescription>
   </ProductWrapper>
 );
