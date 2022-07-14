@@ -39,6 +39,9 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       '@components': path.resolve(__dirname, '..', 'src/components'),
+      '@constants': path.resolve(__dirname, '..', 'src/constants'),
+      '@styles': path.resolve(__dirname, '..', 'src/styles'),
+      '@icons': path.resolve(__dirname, '..', 'src/icons'),
     },
   },
   module: {

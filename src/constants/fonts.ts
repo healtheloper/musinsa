@@ -24,7 +24,7 @@ export const fontFamilys = {
   musinsaOTF: 'MUSINSA OTF',
 };
 
-export const typhographys = {
+export const typographys = {
   h5: {
     // 상품명
     fontSize: 'medium',
@@ -37,17 +37,23 @@ export const typhographys = {
     fontWeight: 'lighter',
     lineHeight: 'lh2',
   },
-  body3: {
+  body4: {
     // 할인전 가격
     fontSize: 'xsmall',
     fontWeight: 'normal',
     lineHeight: 'lh1',
   },
-  body2: {
+  body3: {
     // 필터로 생긴 버튼, 레이블
     fontSize: 'small',
     fontWeight: 'lighter',
     lineHeight: 'lh3',
+  },
+  body2: {
+    // 필터버튼
+    fontSize: 'medium',
+    fontWeight: 'lighter',
+    lineHeight: 'lh4',
   },
   body1: {
     // 가격, 할인율

@@ -1,7 +1,13 @@
+import Header from '@components/Header';
+import Main from '@components/Main';
+import GlobalStyle from '@styles/GlobalStyle';
+
 const App: React.FC = () => (
-  <div>
-    <h1>Hello World</h1>
-  </div>
+  <>
+    <GlobalStyle />
+    <Header />
+    <Main />
+  </>
 );
 
 export default App;
