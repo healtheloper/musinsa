@@ -59,7 +59,7 @@ const FilterProvider = ({ children }) => {
 
 export const useFilterValue = () => {
   const value = useContext(FilterValueContext);
-  if (value === undefined) {
+  if (!value) {
     throw new Error('useFilterValue should be used within FilterProvider');
   }
   return value;
@@ -67,7 +67,7 @@ export const useFilterValue = () => {
 
 export const useFilterActions = () => {
   const value = useContext(FilterActionsContext);
-  if (value === undefined) {
+  if (!value) {
     throw new Error('useFilterActions should be used within FilterProvider');
   }
   return value;

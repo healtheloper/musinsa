@@ -5,14 +5,14 @@ import Typography from '@components/Typography';
 import filterList from '@constants/filterList';
 import SearchIcon from '@icons/Search';
 
-const FilterListWrapper = styled.ul`
+const Wrapper = styled.ul`
   display: flex;
   align-self: flex-start;
   gap: 5px;
 `;
 
-const FilterList: React.FC = () => (
-  <FilterListWrapper>
+const FilterButtonList: React.FC = () => (
+  <Wrapper>
     <li>
       <FilterButton filterId={0}>
         <Typography variant="body2">검색</Typography>
@@ -26,7 +26,7 @@ const FilterList: React.FC = () => (
         </FilterButton>
       </li>
     ))}
-  </FilterListWrapper>
+  </Wrapper>
 );
 
-export default FilterList;
+export default FilterButtonList;

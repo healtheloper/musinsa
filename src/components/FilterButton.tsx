@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import colors from '@constants/colors';
-import { useFilterValue } from '@contexts/FilterProvider';
+import { useFilterActions, useFilterValue } from '@contexts/FilterProvider';
 
 type FilterButtonProps = {
   filterId: number;
@@ -24,9 +24,17 @@ const FilterButtonWrapper = styled.button<{
 
 const FilterButton: React.FC<FilterButtonProps> = ({ filterId, children }) => {
   const { selectedIds } = useFilterValue();
+  const { select } = useFilterActions();
   const isSelected = selectedIds.includes(filterId);
+
+  const handleFilterButtonClick = () => {
+    select(filterId);
+  };
   return (
-    <FilterButtonWrapper isSelected={isSelected}>
+    <FilterButtonWrapper
+      isSelected={isSelected}
+      onClick={handleFilterButtonClick}
+    >
       {children}
     </FilterButtonWrapper>
   );

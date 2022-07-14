@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import FilterList from '@components/FilterList';
+import FilterButtonList from '@components/FilterButtonList';
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -13,7 +13,7 @@ const HeaderWrapper = styled.header`
 const Header: React.FC = () => (
   <HeaderWrapper>
     <h1>MUSINSA</h1>
-    <FilterList />
+    <FilterButtonList />
   </HeaderWrapper>
 );
 
