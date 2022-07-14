@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import FilterButton from '@components/FilterButton';
 import Typography from '@components/Typography';
+import filterList from '@constants/filterList';
 import SearchIcon from '@icons/Search';
 
 const FilterListWrapper = styled.ul`
@@ -13,26 +14,18 @@ const FilterListWrapper = styled.ul`
 const FilterList: React.FC = () => (
   <FilterListWrapper>
     <li>
-      <FilterButton>
+      <FilterButton filterId={0}>
         <Typography variant="body2">검색</Typography>
         <SearchIcon />
       </FilterButton>
     </li>
-    <li>
-      <FilterButton>
-        <Typography variant="body2">세일상품</Typography>
-      </FilterButton>
-    </li>
-    <li>
-      <FilterButton>
-        <Typography variant="body2">단독상품</Typography>
-      </FilterButton>
-    </li>
-    <li>
-      <FilterButton>
-        <Typography variant="body2">품절포함</Typography>
-      </FilterButton>
-    </li>
+    {filterList.map((filterItem) => (
+      <li key={filterItem.id}>
+        <FilterButton filterId={filterItem.id}>
+          <Typography variant="body2">{filterItem.title}</Typography>
+        </FilterButton>
+      </li>
+    ))}
   </FilterListWrapper>
 );
 

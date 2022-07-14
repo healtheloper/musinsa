@@ -1,12 +1,15 @@
 import Header from '@components/Header';
 import Main from '@components/Main';
+import FilterProvider from '@contexts/FilterProvider';
 import GlobalStyle from '@styles/GlobalStyle';
 
 const App: React.FC = () => (
   <>
     <GlobalStyle />
-    <Header />
-    <Main />
+    <FilterProvider>
+      <Header />
+      <Main />
+    </FilterProvider>
   </>
 );
 
