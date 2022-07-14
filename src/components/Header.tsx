@@ -7,6 +7,7 @@ const HeaderWrapper = styled.header`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 16px;
 `;
 
 const Header: React.FC = () => (
