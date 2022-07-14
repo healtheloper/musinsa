@@ -3,20 +3,19 @@ import styled from 'styled-components';
 import Typography from '@components/Typography';
 import colors from '@constants/colors';
 
-const mockProduct = {
-  goodsNo: 1163605,
-  goodsName: '클럽 맨투맨 블랙',
-  price: 59000,
-  brandName: '나이키',
-  imageUrl:
-    'https://image.msscdn.net/images/goods_img/20190923/1163605/1163605_2_500.jpg',
-  linkUrl: 'https://store.musinsa.com/app/goods/1163605',
-  brandLinkUrl: 'https://www.musinsa.com/brands/nike',
-  normalPrice: 89000,
-  isSale: true,
-  saleRate: 34,
-  isSoldOut: true,
-  isExclusive: false,
+export type ProductType = {
+  goodsNo: number;
+  goodsName: string;
+  price: number;
+  brandName: string;
+  imageUrl: string;
+  linkUrl: string;
+  brandLinkUrl: string;
+  normalPrice: number;
+  isSale: boolean;
+  saleRate: number;
+  isSoldOut: boolean;
+  isExclusive: boolean;
 };
 
 const ProductWrapper = styled.li`
@@ -63,42 +62,59 @@ const ProductNameBox = styled.div`
   overflow: hidden;
 `;
 
-const Product: React.FC = () => (
-  <ProductWrapper>
-    <ProducstImageBox>
-      <ProductImage src={mockProduct.imageUrl} alt={mockProduct.goodsName} />
-      {mockProduct.isExclusive && (
-        <ProductLabel>
-          <Typography variant="body3">단독</Typography>
-        </ProductLabel>
-      )}
-    </ProducstImageBox>
-    <ProductDescription>
-      <Typography variant="h6">{mockProduct.brandName}</Typography>
-      <ProductNameBox>
-        <Typography variant="h5">{mockProduct.goodsName}</Typography>
-      </ProductNameBox>
-      <ProductPriceBox>
-        <Typography variant="body1">
-          {`${mockProduct.price.toLocaleString()}원`}
-        </Typography>
-        {mockProduct.isSale && (
-          <Typography variant="body1" color={colors.red}>
-            {`${mockProduct.saleRate}%`}
+const Product: React.FC<{ product: ProductType }> = ({ product }) => {
+  const handleImageLoadError = (event) => {
+    event.target.src =
+      'https://image.msscdn.net/musinsaUI/homework/data/img.jpg';
+  };
+
+  return (
+    <ProductWrapper>
+      <ProducstImageBox>
+        <a href={product.linkUrl}>
+          <ProductImage
+            src={product.imageUrl}
+            alt={product.goodsName}
+            onError={handleImageLoadError}
+          />
+        </a>
+        {product.isExclusive && (
+          <ProductLabel>
+            <Typography variant="body3">단독</Typography>
+          </ProductLabel>
+        )}
+      </ProducstImageBox>
+      <ProductDescription>
+        <a href={product.brandLinkUrl}>
+          <Typography variant="h6">{product.brandName}</Typography>
+        </a>
+        <a href={product.linkUrl}>
+          <ProductNameBox>
+            <Typography variant="h5">{product.goodsName}</Typography>
+          </ProductNameBox>
+        </a>
+        <ProductPriceBox>
+          <Typography variant="body1">
+            {`${product.price.toLocaleString()}원`}
+          </Typography>
+          {product.isSale && (
+            <Typography variant="body1" color={colors.red}>
+              {`${product.saleRate}%`}
+            </Typography>
+          )}
+        </ProductPriceBox>
+        {product.isSale && (
+          <Typography
+            variant="body4"
+            textDecoration="line-through"
+            color={colors.grey6}
+          >
+            {`${product.normalPrice.toLocaleString()}원`}
           </Typography>
         )}
-      </ProductPriceBox>
-      {mockProduct.isSale && (
-        <Typography
-          variant="body4"
-          textDecoration="line-through"
-          color={colors.grey6}
-        >
-          {`${mockProduct.normalPrice.toLocaleString()}원`}
-        </Typography>
-      )}
-    </ProductDescription>
-  </ProductWrapper>
-);
+      </ProductDescription>
+    </ProductWrapper>
+  );
+};
 
 export default Product;

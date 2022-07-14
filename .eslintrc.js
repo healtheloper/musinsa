@@ -19,6 +19,13 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['event', 'target'],
+      },
+    ],
     'react/prop-types': 'off',
     // only use arrow-function component
     // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/function-component-definition.md

@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
         border: none;
         background-color: inherit;
     }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
 `;
 
 export default GlobalStyle;
