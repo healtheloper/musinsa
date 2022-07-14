@@ -42,6 +42,7 @@ module.exports = {
       '@constants': path.resolve(__dirname, '..', 'src/constants'),
       '@styles': path.resolve(__dirname, '..', 'src/styles'),
       '@icons': path.resolve(__dirname, '..', 'src/icons'),
+      '@contexts': path.resolve(__dirname, '..', 'src/contexts'),
     },
   },
   module: {
