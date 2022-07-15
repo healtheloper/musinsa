@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Product, { ProductType } from '@components/Product';
+import useOnScreen from '@hooks/useOnScreen';
 
 const MAX_GOODS_PAGE = 3;
 
@@ -18,22 +19,15 @@ const ListWrapper = styled.ul`
   }
 `;
 
-const observerOption = {
-  rootMargin: '20px', // root 가 가진 여백
-  threshold: 0, // 대상 요소가 몇 % 가 보여졌을 때 콜백을 실행할지
-};
+const Loader = styled.div`
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
+`;
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [goodsPage, setGoodsPage] = useState(0);
   const loaderRef = useRef(null);
-
-  const handleObserver = useCallback((entries) => {
-    const target = entries[0];
-    if (target.isIntersecting) {
-      setGoodsPage((prevPage) => prevPage + 1);
-    }
-  }, []);
+  const { isIntersecting, unobserve } = useOnScreen(loaderRef);
 
   const fetchProducts = useCallback(async (page) => {
     const response = await fetch(
@@ -50,16 +44,20 @@ const ProductList: React.FC = () => {
   }, [fetchProducts, goodsPage]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, observerOption);
-    if (loaderRef.current) observer.observe(loaderRef.current);
-  }, [handleObserver]);
+    if (isIntersecting) {
+      setGoodsPage((prevPage) => prevPage + 1);
+      if (goodsPage + 1 === MAX_GOODS_PAGE) {
+        unobserve();
+      }
+    }
+  }, [isIntersecting]);
 
   return (
     <ListWrapper>
-      {products?.map((product: ProductType) => (
-        <Product key={`${goodsPage}-${product.goodsNo}`} product={product} />
+      {products?.map((product: ProductType, idx) => (
+        <Product key={`${idx}-${product.goodsNo}`} product={product} />
       ))}
-      <div ref={loaderRef} />
+      <Loader ref={loaderRef} visible={products.length !== 0} />
     </ListWrapper>
   );
 };

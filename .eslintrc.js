@@ -19,6 +19,8 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'react/no-array-index-key': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'no-param-reassign': [
       'error',
       {

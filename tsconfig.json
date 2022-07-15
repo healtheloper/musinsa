@@ -18,7 +18,8 @@
       "@constants/*": ["src/constants/*"],
       "@styles/*": ["src/styles/*"],
       "@icons/*": ["src/icons/*"],
-      "@contexts/*": ["src/contexts/*"]
+      "@contexts/*": ["src/contexts/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   },
   "include": ["src", "webpack"]
