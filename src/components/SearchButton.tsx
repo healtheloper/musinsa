@@ -11,14 +11,12 @@ type SearchButtonProps = {
 
 const SearchButtonWrapper = styled(FilterButtonWrapper)`
   ${({ isSearching }) =>
-    isSearching
-      ? `color: ${colors.white}; background-color: ${colors.blue};`
-      : `color: ${colors.black};`}
+    isSearching && `color: ${colors.white}; background-color: ${colors.blue};`}
 `;
 
 const SearchButton: React.FC<SearchButtonProps> = ({ filterId, children }) => {
   const { selectedIds, isSearching } = useFilterValue();
-  const { toggleSelected, toggleIsSearching } = useFilterActions();
+  const { toggleIsSearching } = useFilterActions();
   const isSelected = selectedIds.includes(filterId);
 
   const handleSearchButtonClick = () => {

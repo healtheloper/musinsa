@@ -1,10 +1,11 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 import colors from '@constants/colors';
-import { useFilterValue } from '@contexts/FilterProvider';
+import { useFilterActions, useFilterValue } from '@contexts/FilterProvider';
 import SearchIcon from '@icons/SearchIcon';
 
-const SearchInputBox = styled.div`
+const SearchInputBox = styled.form`
   width: 100%;
   background-color: ${colors.grey1};
   padding: 20px 15px;
@@ -26,14 +27,26 @@ const MyInput = styled.input`
   width: 100%;
 `;
 
+const searchFilterId = 0;
+
 const SearchInput: React.FC = () => {
   const { isSearching } = useFilterValue();
+  const { updateSearchKeyword } = useFilterActions();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (!inputRef.current) return;
+    updateSearchKeyword(inputRef.current.value);
+  };
 
   return isSearching ? (
-    <SearchInputBox>
+    <SearchInputBox onSubmit={handleSearchSubmit}>
       <SearchInputInner>
-        <SearchIcon />
-        <MyInput />
+        <button type="submit">
+          <SearchIcon />
+        </button>
+        <MyInput ref={inputRef} />
       </SearchInputInner>
     </SearchInputBox>
   ) : null;

@@ -36,7 +36,7 @@ const ProductList: React.FC = () => {
   const [goodsPage, setGoodsPage] = useState(0);
   const loaderRef = useRef(null);
   const { isIntersecting, unobserve } = useOnScreen(loaderRef);
-  const { selectedIds } = useFilterValue();
+  const { selectedIds, searchKeyword } = useFilterValue();
 
   let filteredProducts = products;
   let isIncludingSoldOut = false;
@@ -45,6 +45,14 @@ const ProductList: React.FC = () => {
     const filterOption = FilterProductEnum[filterId];
     if (filterOption === 'isSoldOut') {
       isIncludingSoldOut = true;
+      return;
+    }
+    if (filterOption === 'isSearching') {
+      filteredProducts = filteredProducts.filter(
+        (product) =>
+          product.goodsName.includes(searchKeyword) ||
+          product.brandName.includes(searchKeyword),
+      );
       return;
     }
     filteredProducts = filteredProducts.filter(
