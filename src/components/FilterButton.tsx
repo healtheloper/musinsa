@@ -24,11 +24,11 @@ const FilterButtonWrapper = styled.button<{
 
 const FilterButton: React.FC<FilterButtonProps> = ({ filterId, children }) => {
   const { selectedIds } = useFilterValue();
-  const { select } = useFilterActions();
+  const { toggleSelected } = useFilterActions();
   const isSelected = selectedIds.includes(filterId);
 
   const handleFilterButtonClick = () => {
-    select(filterId);
+    toggleSelected(filterId);
   };
   return (
     <FilterButtonWrapper

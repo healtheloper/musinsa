@@ -2,8 +2,16 @@ import styled from 'styled-components';
 
 import Typography from '@components/Typography';
 import colors from '@constants/colors';
+import { useFilterActions, useFilterValue } from '@contexts/FilterProvider';
 import DeleteIcon from '@icons/DeleteIcon';
 import RefreshIcon from '@icons/RefreshIcon';
+
+enum FilterConditionEnum {
+  '검색',
+  '세일상품',
+  '단독상품',
+  '품절포함',
+}
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,30 +38,32 @@ const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
-const FilterConditionList: React.FC = () => (
-  <Wrapper>
-    <ConditionWrapper>
-      <FilterCondition>
-        <Typography variant="body3">세일상품</Typography>
-        <DeleteButton type="button">
-          <DeleteIcon />
-        </DeleteButton>
-      </FilterCondition>
-      <FilterCondition>
-        <Typography variant="body3">단독상품</Typography>
-        <DeleteButton type="button">
-          <DeleteIcon />
-        </DeleteButton>
-      </FilterCondition>
-      <FilterCondition>
-        <Typography variant="body3">품절포함</Typography>
-        <DeleteButton type="button">
-          <DeleteIcon />
-        </DeleteButton>
-      </FilterCondition>
-    </ConditionWrapper>
-    <RefreshIcon />
-  </Wrapper>
-);
+const FilterConditionList: React.FC = () => {
+  const { selectedIds } = useFilterValue();
+  const { toggleSelected } = useFilterActions();
+
+  return selectedIds.length ? (
+    <Wrapper>
+      <ConditionWrapper>
+        {selectedIds.map((selectedId) => (
+          <FilterCondition>
+            <Typography variant="body3">
+              {FilterConditionEnum[selectedId]}
+            </Typography>
+            <DeleteButton
+              type="button"
+              onClick={() => {
+                toggleSelected(selectedId);
+              }}
+            >
+              <DeleteIcon />
+            </DeleteButton>
+          </FilterCondition>
+        ))}
+      </ConditionWrapper>
+      <RefreshIcon />
+    </Wrapper>
+  ) : null;
+};
 
 export default FilterConditionList;

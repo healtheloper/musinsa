@@ -6,7 +6,7 @@ type FilterValueType = {
 };
 
 type FilterActionsType = {
-  select: (id: number) => void;
+  toggleSelected: (id: number) => void;
   toggleIsSearching: () => void;
 };
 
@@ -23,7 +23,7 @@ const FilterProvider = ({ children }) => {
 
   const actions = useMemo(
     () => ({
-      select(id: number) {
+      toggleSelected(id: number) {
         if (filter.selectedIds.includes(id)) {
           setFilter({
             ...filter,
