@@ -2,7 +2,15 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Product, { ProductType } from '@components/Product';
+import { useFilterValue } from '@contexts/FilterProvider';
 import useOnScreen from '@hooks/useOnScreen';
+
+enum FilterProductEnum {
+  'isSearching',
+  'isSale',
+  'isExclusive',
+  'isSoldOut',
+}
 
 const MAX_GOODS_PAGE = 3;
 
@@ -28,6 +36,25 @@ const ProductList: React.FC = () => {
   const [goodsPage, setGoodsPage] = useState(0);
   const loaderRef = useRef(null);
   const { isIntersecting, unobserve } = useOnScreen(loaderRef);
+  const { selectedIds } = useFilterValue();
+
+  let filteredProducts = products;
+  let isIncludingSoldOut = false;
+
+  selectedIds.forEach((filterId) => {
+    const filterOption = FilterProductEnum[filterId];
+    if (filterOption === 'isSoldOut') {
+      isIncludingSoldOut = true;
+      return;
+    }
+    filteredProducts = filteredProducts.filter(
+      (product) => product[filterOption],
+    );
+  });
+
+  if (!isIncludingSoldOut) {
+    filteredProducts = filteredProducts.filter((product) => !product.isSoldOut);
+  }
 
   const fetchProducts = useCallback(async (page) => {
     const response = await fetch(
@@ -54,7 +81,7 @@ const ProductList: React.FC = () => {
 
   return (
     <ListWrapper>
-      {products?.map((product: ProductType, idx) => (
+      {filteredProducts?.map((product: ProductType, idx) => (
         <Product key={`${idx}-${product.goodsNo}`} product={product} />
       ))}
       <Loader ref={loaderRef} visible={products.length !== 0} />

@@ -3,6 +3,7 @@ export const fontSizes = {
   small: '12px',
   medium: '14px',
   large: '16px',
+  xlarge: '20px',
 };
 
 export const fontWeights = {
@@ -16,7 +17,8 @@ export const fontLineHeights = {
   lh2: '16px',
   lh3: '18px',
   lh4: '21px',
-  lh5: '24px',
+  lh5: '22px',
+  lh6: '24px',
 };
 
 export const fontFamilys = {
@@ -59,13 +61,19 @@ export const typographys = {
     // 가격, 할인율
     fontSize: 'large',
     fontWeight: 'normal',
+    lineHeight: 'lh6',
+  },
+  body0: {
+    // sold out
+    fontSize: 'xlarge',
+    fontWeight: 'normal',
     lineHeight: 'lh5',
   },
   placeholder: {
     // 검색창 placeholder
     fontSize: 'large',
     fontWeight: 'lighter',
-    lineHeight: 'lh5',
+    lineHeight: 'lh6',
   },
 };
 

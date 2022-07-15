@@ -43,10 +43,15 @@ const ProductLabel = styled.div`
 
 const ProducstImageBox = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ProductImage = styled.img`
   width: 100%;
+  ${({ isSoldOut }) => isSoldOut && 'opacity: 0.5;'}
 `;
 
 const ProductPriceBox = styled.div`
@@ -62,6 +67,10 @@ const ProductNameBox = styled.div`
   overflow: hidden;
 `;
 
+const SoldOutBox = styled.div`
+  position: absolute;
+`;
+
 const Product: React.FC<{ product: ProductType }> = ({ product }) => {
   const handleImageLoadError = (event) => {
     event.target.src =
@@ -74,10 +83,18 @@ const Product: React.FC<{ product: ProductType }> = ({ product }) => {
         <a href={product.linkUrl}>
           <ProductImage
             src={product.imageUrl}
+            isSoldOut={product.isSoldOut}
             alt={product.goodsName}
             onError={handleImageLoadError}
           />
         </a>
+        {product.isSoldOut && (
+          <SoldOutBox>
+            <Typography variant="body0" color={colors.grey3}>
+              SOLD OUT
+            </Typography>
+          </SoldOutBox>
+        )}
         {product.isExclusive && (
           <ProductLabel>
             <Typography variant="body3">단독</Typography>

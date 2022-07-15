@@ -7,7 +7,14 @@ import {
   typographys,
 } from '@constants/fonts';
 
-type TypographyVariants = 'h5' | 'h6' | 'body1' | 'body2' | 'body3' | 'body4';
+type TypographyVariants =
+  | 'h5'
+  | 'h6'
+  | 'body0'
+  | 'body1'
+  | 'body2'
+  | 'body3'
+  | 'body4';
 
 type TypographyType = {
   variant: TypographyVariants;
