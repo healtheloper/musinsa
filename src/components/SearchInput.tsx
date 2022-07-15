@@ -27,8 +27,6 @@ const MyInput = styled.input`
   width: 100%;
 `;
 
-const searchFilterId = 0;
-
 const SearchInput: React.FC = () => {
   const { isSearching } = useFilterValue();
   const { updateSearchKeyword } = useFilterActions();
