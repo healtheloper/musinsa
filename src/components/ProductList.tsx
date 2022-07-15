@@ -57,7 +57,7 @@ const ProductList: React.FC = () => {
   return (
     <ListWrapper>
       {products?.map((product: ProductType) => (
-        <Product key={product.goodsNo} product={product} />
+        <Product key={`${goodsPage}-${product.goodsNo}`} product={product} />
       ))}
       <div ref={loaderRef} />
     </ListWrapper>
