@@ -14,7 +14,6 @@ const SearchIcon: React.FC = () => (
     />
     <mask
       id="mask0_1111_212"
-      //   style="mask-type:alpha;"
       maskUnits="userSpaceOnUse"
       x="3"
       y="3"

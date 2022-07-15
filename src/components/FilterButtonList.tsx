@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import FilterButton from '@components/FilterButton';
 import Typography from '@components/Typography';
 import filterList from '@constants/filterList';
-import SearchIcon from '@icons/Search';
+import SearchIcon from '@icons/SearchIcon';
 
 const Wrapper = styled.ul`
   display: flex;

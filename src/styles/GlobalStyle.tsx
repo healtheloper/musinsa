@@ -18,6 +18,9 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         color: inherit;
     }
+    h1 {
+        margin: 0;
+    }
 `;
 
 export default GlobalStyle;
