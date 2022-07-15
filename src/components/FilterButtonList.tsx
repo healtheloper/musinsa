@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import FilterButton from '@components/FilterButton';
+import SearchButton from '@components/SearchButton';
 import Typography from '@components/Typography';
 import filterList from '@constants/filterList';
 import SearchIcon from '@icons/SearchIcon';
@@ -14,10 +15,10 @@ const Wrapper = styled.ul`
 const FilterButtonList: React.FC = () => (
   <Wrapper>
     <li>
-      <FilterButton filterId={0}>
+      <SearchButton filterId={0}>
         <Typography variant="body2">검색</Typography>
         <SearchIcon />
-      </FilterButton>
+      </SearchButton>
     </li>
     {filterList.map((filterItem) => (
       <li key={filterItem.id}>

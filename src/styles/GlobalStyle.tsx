@@ -21,6 +21,9 @@ const GlobalStyle = createGlobalStyle`
     h1 {
         margin: 0;
     }
+    input:focus-visible {
+        outline:none;
+    }
 `;
 
 export default GlobalStyle;

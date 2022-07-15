@@ -8,10 +8,7 @@ type FilterButtonProps = {
   children?: React.ReactNode;
 };
 
-const FilterButtonWrapper = styled.button<{
-  isSelected: boolean;
-  isFocusing: boolean;
-}>`
+export const FilterButtonWrapper = styled.button`
   display: flex;
   align-items: center;
   gap: 2px;
@@ -30,6 +27,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({ filterId, children }) => {
   const handleFilterButtonClick = () => {
     toggleSelected(filterId);
   };
+
   return (
     <FilterButtonWrapper
       isSelected={isSelected}
