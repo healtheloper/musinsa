@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
+import EmptyAlert from '@components/EmptyAlert';
 import Product, { ProductType } from '@components/Product';
 import { useFilterValue } from '@contexts/FilterProvider';
 import useOnScreen from '@hooks/useOnScreen';
@@ -88,12 +89,18 @@ const ProductList: React.FC = () => {
   }, [isIntersecting]);
 
   return (
-    <ListWrapper>
-      {filteredProducts?.map((product: ProductType, idx) => (
-        <Product key={`${idx}-${product.goodsNo}`} product={product} />
-      ))}
-      <Loader ref={loaderRef} visible={products.length !== 0} />
-    </ListWrapper>
+    <>
+      {filteredProducts.length ? (
+        <ListWrapper>
+          {filteredProducts.map((product: ProductType, idx) => (
+            <Product key={`${idx}-${product.goodsNo}`} product={product} />
+          ))}
+        </ListWrapper>
+      ) : (
+        <EmptyAlert />
+      )}
+      <Loader ref={loaderRef} visible={filteredProducts.length !== 0} />
+    </>
   );
 };
 

@@ -52,7 +52,7 @@ export const typographys = {
     lineHeight: 'lh3',
   },
   body2: {
-    // 필터버튼
+    // 필터버튼, 검색결과없음
     fontSize: 'medium',
     fontWeight: 'lighter',
     lineHeight: 'lh4',

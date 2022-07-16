@@ -24,6 +24,9 @@ const GlobalStyle = createGlobalStyle`
     input:focus-visible {
         outline:none;
     }
+    button {
+        cursor: pointer;
+    }
 `;
 
 export default GlobalStyle;
