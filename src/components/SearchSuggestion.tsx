@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import highlightWord from '@common/highlightWord';
 import colors from '@constants/colors';
 import { useFilterValue } from '@contexts/FilterProvider';
 import { useProductsState } from '@contexts/ProductsProvider';
@@ -32,15 +33,15 @@ const SearchSuggestion: React.FC = () => {
         .filter((name) => name.includes(searchingKeyword))
         .slice(0, SUGGESTION_COUNT);
 
-  return isSearchingKeywordEmpty ? null : (
+  return suggestions.length ? (
     <SuggestionWrapper>
       {suggestions.map((suggestion, idx) => (
         <Suggestion isLast={idx === suggestions.length - 1}>
-          {suggestion}
+          {highlightWord(suggestion, searchingKeyword)}
         </Suggestion>
       ))}
     </SuggestionWrapper>
-  );
+  ) : null;
 };
 
 export default SearchSuggestion;
