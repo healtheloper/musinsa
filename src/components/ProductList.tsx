@@ -8,7 +8,7 @@ import { useProductsState } from '@contexts/ProductsProvider';
 import useOnScreen from '@hooks/useOnScreen';
 
 enum FilterProductEnum {
-  'isSearching',
+  'isSearched',
   'isSale',
   'isExclusive',
   'isSoldOut',
@@ -38,7 +38,7 @@ const ProductList: React.FC = () => {
   const [goodsPage, setGoodsPage] = useState(0);
   const loaderRef = useRef(null);
   const { isIntersecting, unobserve } = useOnScreen(loaderRef);
-  const { selectedIds, searchKeyword } = useFilterValue();
+  const { selectedIds, searchedKeyword } = useFilterValue();
 
   let filteredProducts = products;
   let isIncludingSoldOut = false;
@@ -49,11 +49,11 @@ const ProductList: React.FC = () => {
       isIncludingSoldOut = true;
       return;
     }
-    if (filterOption === 'isSearching') {
+    if (filterOption === 'isSearched') {
       filteredProducts = filteredProducts.filter(
         (product) =>
-          product.goodsName.includes(searchKeyword) ||
-          product.brandName.includes(searchKeyword),
+          product.goodsName.includes(searchedKeyword) ||
+          product.brandName.includes(searchedKeyword),
       );
       return;
     }

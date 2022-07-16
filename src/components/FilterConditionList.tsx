@@ -41,7 +41,7 @@ const DeleteButton = styled.button`
 const searchFilterId = 0;
 
 const FilterConditionList: React.FC = () => {
-  const { selectedIds, searchKeyword } = useFilterValue();
+  const { selectedIds, searchedKeyword } = useFilterValue();
   const { toggleSelected } = useFilterActions();
 
   return selectedIds.length ? (
@@ -51,7 +51,7 @@ const FilterConditionList: React.FC = () => {
           <FilterCondition key={selectedId}>
             <Typography variant="body3">
               {selectedId === searchFilterId
-                ? searchKeyword
+                ? searchedKeyword
                 : FilterConditionEnum[selectedId]}
             </Typography>
             <DeleteButton

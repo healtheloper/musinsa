@@ -3,19 +3,22 @@ import { createContext, useContext, useMemo, useState } from 'react';
 type FilterValueType = {
   selectedIds: number[];
   isSearching: boolean;
-  searchKeyword: string;
+  searchedKeyword: string;
+  searchingKeyword: string;
 };
 
 type FilterActionsType = {
   toggleSelected: (id: number) => void;
   toggleIsSearching: () => void;
-  updateSearchKeyword: (keyword: string) => void;
+  updateSearchedKeyword: (keyword: string) => void;
+  updateSearchingKeyword: (keyword: string) => void;
 };
 
 const initFilterValue = {
   selectedIds: [],
-  isSearching: false,
-  searchKeyword: '',
+  isSearching: true,
+  searchedKeyword: '',
+  searchingKeyword: '',
 };
 
 const FilterValueContext = createContext<FilterValueType>(initFilterValue);
@@ -47,11 +50,18 @@ const FilterProvider = ({ children }) => {
           isSearching: !filter.isSearching,
         });
       },
-      updateSearchKeyword(keyword: string) {
+      updateSearchedKeyword(keyword: string) {
         setFilter({
           selectedIds: [...new Set([...filter.selectedIds, 0])],
           isSearching: false,
-          searchKeyword: keyword,
+          searchingKeyword: '',
+          searchedKeyword: keyword,
+        });
+      },
+      updateSearchingKeyword(keyword: string) {
+        setFilter({
+          ...filter,
+          searchingKeyword: keyword,
         });
       },
     }),

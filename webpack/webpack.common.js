@@ -44,6 +44,7 @@ module.exports = {
       '@icons': path.resolve(__dirname, '..', 'src/icons'),
       '@contexts': path.resolve(__dirname, '..', 'src/contexts'),
       '@hooks': path.resolve(__dirname, '..', 'src/hooks'),
+      '@common': path.resolve(__dirname, '..', 'src/common'),
     },
   },
   module: {

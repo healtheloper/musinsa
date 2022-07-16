@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 
+import debounce from '@common/debounce';
+import SearchSuggestion from '@components/SearchSuggestion';
 import colors from '@constants/colors';
 import { useFilterActions, useFilterValue } from '@contexts/FilterProvider';
 import SearchIcon from '@icons/SearchIcon';
@@ -27,16 +29,26 @@ const MyInput = styled.input`
   width: 100%;
 `;
 
+const searchInputDebounceDelayTime = 300;
+
 const SearchInput: React.FC = () => {
   const { isSearching } = useFilterValue();
-  const { updateSearchKeyword } = useFilterActions();
+  const { updateSearchedKeyword, updateSearchingKeyword } = useFilterActions();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (!inputRef.current) return;
-    updateSearchKeyword(inputRef.current.value);
+    updateSearchedKeyword(inputRef.current.value);
   };
+
+  const handleSearchInputChange = debounce({
+    msTime: searchInputDebounceDelayTime,
+    callback: () => {
+      if (!inputRef.current) return;
+      updateSearchingKeyword(inputRef.current.value);
+    },
+  });
 
   return isSearching ? (
     <SearchInputBox onSubmit={handleSearchSubmit}>
@@ -44,8 +56,9 @@ const SearchInput: React.FC = () => {
         <button type="submit">
           <SearchIcon />
         </button>
-        <MyInput ref={inputRef} />
+        <MyInput ref={inputRef} onChange={handleSearchInputChange} />
       </SearchInputInner>
+      <SearchSuggestion />
     </SearchInputBox>
   ) : null;
 };
