@@ -82,6 +82,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', 'public', 'index.html'),
       base: '/',
+      favicon: path.resolve(__dirname, '..', 'public', 'favicon.ico'),
     }),
     new InterpolateHtmlPlugin(process.env),
   ],

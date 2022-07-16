@@ -22,7 +22,7 @@ const highlightWord = (string: string, word: string) => {
       {back ? <span>{back}</span> : null}
     </>
   ) : (
-    string
+    <span>string</span>
   );
 };
 
