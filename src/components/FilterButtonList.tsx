@@ -6,7 +6,7 @@ import Typography from '@components/Typography';
 import filterList from '@constants/filterList';
 import SearchIcon from '@icons/SearchIcon';
 
-const Wrapper = styled.ul`
+const Wrapper: React.FC<{ children: React.ReactNode }> = styled.ul`
   display: flex;
   align-self: flex-start;
   gap: 5px;

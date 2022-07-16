@@ -5,10 +5,16 @@ import { useFilterActions, useFilterValue } from '@contexts/FilterProvider';
 
 type FilterButtonProps = {
   filterId: number;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 };
 
-export const FilterButtonWrapper = styled.button`
+interface IFilterButton extends React.HTMLProps<IFilterButton> {
+  isSelected?: boolean;
+}
+
+export const FilterButtonWrapper: React.FC<IFilterButton> = styled.button<{
+  isSelected: boolean;
+}>`
   display: flex;
   align-items: center;
   gap: 2px;

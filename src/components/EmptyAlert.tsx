@@ -1,10 +1,11 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import Typography from '@components/Typography';
 import colors from '@constants/colors';
 import EmptyIcon from '@icons/EmptyIcon';
 
-const Wrapper = styled.div`
+const Wrapper: React.FC<{ children: React.ReactNode }> = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { SyntheticEvent, useRef } from 'react';
 import styled from 'styled-components';
 
 import debounce from '@common/debounce';
@@ -7,13 +7,17 @@ import colors from '@constants/colors';
 import { useFilterActions, useFilterValue } from '@contexts/FilterProvider';
 import SearchIcon from '@icons/SearchIcon';
 
-const SearchInputBox = styled.form`
+interface IMyInput extends React.HTMLProps<HTMLInputElement> {
+  ref: React.RefObject<HTMLInputElement>;
+}
+
+const SearchInputBox: React.FC<React.HTMLProps<HTMLFormElement>> = styled.form`
   width: 100%;
   background-color: ${colors.grey1};
   padding: 20px 15px;
 `;
 
-const SearchInputInner = styled.div`
+const SearchInputInner: React.FC<{ children: React.ReactNode }> = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -22,7 +26,7 @@ const SearchInputInner = styled.div`
   padding: 8px 14px;
 `;
 
-const MyInput = styled.input`
+const MyInput: React.FC<IMyInput> = styled.input`
   border: none;
   background-color: inherit;
   margin-left: 10px;
@@ -36,7 +40,7 @@ const SearchInput: React.FC = () => {
   const { updateSearchedKeyword, updateSearchingKeyword } = useFilterActions();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if (!inputRef.current) return;
     updateSearchedKeyword(inputRef.current.value);

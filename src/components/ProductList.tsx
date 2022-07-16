@@ -14,9 +14,13 @@ enum FilterProductEnum {
   'isSoldOut',
 }
 
+interface ILoader extends React.HTMLProps<HTMLDivElement> {
+  visible: boolean;
+}
+
 const MAX_GOODS_PAGE = 3;
 
-const ListWrapper = styled.ul`
+const ListWrapper: React.FC<{ children: React.ReactNode }> = styled.ul`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -29,7 +33,7 @@ const ListWrapper = styled.ul`
   }
 `;
 
-const Loader = styled.div`
+const Loader: React.FC<ILoader> = styled.div`
   display: ${({ visible }) => (visible ? 'block' : 'none')};
 `;
 

@@ -18,21 +18,25 @@ export type ProductType = {
   isExclusive: boolean;
 };
 
-const ProductWrapper = styled.li`
+interface IProductImage extends React.HTMLProps<HTMLImageElement> {
+  isSoldOut: boolean;
+}
+
+const ProductWrapper: React.FC<{ children: React.ReactNode }> = styled.li`
   width: 100%;
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 195px;
 `;
 
-const ProductDescription = styled.div`
+const ProductDescription: React.FC<{ children: React.ReactNode }> = styled.div`
   display: grid;
   grid-template-rows: 4fr 9fr 6fr 3fr;
   padding: 20px 10px;
   height: 100%;
 `;
 
-const ProductLabel = styled.div`
+const ProductLabel: React.FC<{ children: React.ReactNode }> = styled.div`
   position: absolute;
   background-color: ${colors.green};
   color: ${colors.white};
@@ -41,7 +45,7 @@ const ProductLabel = styled.div`
   padding: 4px 6px;
 `;
 
-const ProducstImageBox = styled.div`
+const ProducstImageBox: React.FC<{ children: React.ReactNode }> = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -49,17 +53,17 @@ const ProducstImageBox = styled.div`
   justify-content: center;
 `;
 
-const ProductImage = styled.img`
+const ProductImage: React.FC<IProductImage> = styled.img`
   width: 100%;
   ${({ isSoldOut }) => isSoldOut && 'opacity: 0.5;'}
 `;
 
-const ProductPriceBox = styled.div`
+const ProductPriceBox: React.FC<{ children: React.ReactNode }> = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-const ProductNameBox = styled.div`
+const ProductNameBox: React.FC<{ children: React.ReactNode }> = styled.div`
   height: 36px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -67,7 +71,7 @@ const ProductNameBox = styled.div`
   overflow: hidden;
 `;
 
-const SoldOutBox = styled.div`
+const SoldOutBox: React.FC<{ children: React.ReactNode }> = styled.div`
   position: absolute;
 `;
 

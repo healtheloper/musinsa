@@ -1,3 +1,4 @@
+import { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 
 import highlightWord from '@common/highlightWord';
@@ -5,14 +6,18 @@ import colors from '@constants/colors';
 import { useFilterActions, useFilterValue } from '@contexts/FilterProvider';
 import { useProductsState } from '@contexts/ProductsProvider';
 
-const SuggestionWrapper = styled.ul`
+const SuggestionWrapper: React.FC<{ children: React.ReactNode }> = styled.ul`
   margin-top: 5px;
   border: 1px solid ${colors.grey5};
   background-color: ${colors.white};
   padding: 8px 14px;
 `;
 
-const Suggestion = styled.li`
+const Suggestion: React.FC<{
+  children: React.ReactNode;
+  isLast: boolean;
+  onClick: (event: SyntheticEvent) => void;
+}> = styled.li`
   ${({ isLast }) => !isLast && `border-bottom: 1px solid ${colors.grey5};`}
   width: 100%;
   padding: 10px 0px;

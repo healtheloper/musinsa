@@ -13,18 +13,18 @@ enum FilterConditionEnum {
   '품절포함',
 }
 
-const Wrapper = styled.div`
+const Wrapper: React.FC<{ children: React.ReactNode }> = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
 `;
 
-const ConditionWrapper = styled.div`
+const ConditionWrapper: React.FC<{ children: React.ReactNode }> = styled.div`
   display: flex;
   gap: 5px;
 `;
 
-const FilterCondition = styled.div`
+const FilterCondition: React.FC<{ children: React.ReactNode }> = styled.div`
   display: flex;
   gap: 7px;
   align-items: center;
@@ -34,7 +34,9 @@ const FilterCondition = styled.div`
   color: ${colors.white};
 `;
 
-const DeleteButton = styled.button`
+const DeleteButton: React.FC<
+  React.HTMLProps<HTMLButtonElement>
+> = styled.button`
   cursor: pointer;
 `;
 

@@ -8,7 +8,7 @@ import colors from '@constants/colors';
 export const HEADER_PADDING_X = '10px';
 export const HEADER_PADDING_Y = '40px';
 
-const HeaderWrapper = styled.header`
+const HeaderWrapper: React.FC<{ children: React.ReactNode }> = styled.header`
   position: fixed;
   top: 0;
   width: 100%;

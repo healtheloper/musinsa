@@ -9,7 +9,14 @@ type SearchButtonProps = {
   children?: React.ReactNode;
 };
 
-const SearchButtonWrapper = styled(FilterButtonWrapper)`
+interface ISearchButton extends React.HTMLProps<HTMLButtonElement> {
+  isSearching: boolean;
+  isSelected: boolean;
+}
+
+const SearchButtonWrapper: React.FC<ISearchButton> = styled(
+  FilterButtonWrapper,
+)`
   ${({ isSearching }) =>
     isSearching && `color: ${colors.white}; background-color: ${colors.blue};`}
 `;

@@ -23,7 +23,7 @@ type TypographyType = {
   children: React.ReactNode;
 };
 
-const TypographyText = styled.span`
+const TypographyText: React.FC<TypographyType> = styled.span`
   font-size: ${({ variant }) => fontSizes[typographys[variant].fontSize]};
   font-weight: ${({ variant }) => fontWeights[typographys[variant].fontWeight]};
   line-height: ${({ variant }) =>
