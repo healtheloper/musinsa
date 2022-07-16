@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { HEADER_PADDING_Y } from '@components/Header';
+
 const useOnScreen = (ref: React.MutableRefObject<null | HTMLDivElement>) => {
   const [isIntersecting, setIntersecting] = useState(false);
 
@@ -8,7 +10,13 @@ const useOnScreen = (ref: React.MutableRefObject<null | HTMLDivElement>) => {
     setIntersecting(entry.isIntersecting);
   }, []);
 
-  const observer = useMemo(() => new IntersectionObserver(handleObserver), []);
+  const observer = useMemo(
+    () =>
+      new IntersectionObserver(handleObserver, {
+        rootMargin: HEADER_PADDING_Y,
+      }),
+    [],
+  );
 
   const unobserve = useCallback(() => {
     if (ref.current) {

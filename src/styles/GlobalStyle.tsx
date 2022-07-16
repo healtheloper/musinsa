@@ -4,6 +4,9 @@ const GlobalStyle = createGlobalStyle`
     * {
         box-sizing: border-box;
     }
+    body {
+        margin:0;
+    }
     ul {
         list-style: none;
         margin: 0;

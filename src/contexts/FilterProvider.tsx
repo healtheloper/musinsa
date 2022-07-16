@@ -16,7 +16,7 @@ type FilterActionsType = {
 
 const initFilterValue = {
   selectedIds: [],
-  isSearching: true,
+  isSearching: false,
   searchedKeyword: '',
   searchingKeyword: '',
 };
@@ -47,6 +47,7 @@ const FilterProvider = ({ children }) => {
       toggleIsSearching() {
         setFilter({
           ...filter,
+          searchingKeyword: '',
           isSearching: !filter.isSearching,
         });
       },
