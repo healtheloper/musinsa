@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import EmptyAlert from '@components/EmptyAlert';
 import Product, { ProductType } from '@components/Product';
 import { useFilterValue } from '@contexts/FilterProvider';
+import { useProductsState } from '@contexts/ProductsProvider';
 import useOnScreen from '@hooks/useOnScreen';
 
 enum FilterProductEnum {
@@ -33,7 +34,7 @@ const Loader = styled.div`
 `;
 
 const ProductList: React.FC = () => {
-  const [products, setProducts] = useState<ProductType[]>([]);
+  const [products, setProducts] = useProductsState();
   const [goodsPage, setGoodsPage] = useState(0);
   const loaderRef = useRef(null);
   const { isIntersecting, unobserve } = useOnScreen(loaderRef);
